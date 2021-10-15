@@ -3,16 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.scss'; 
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-import Header from './components/header/header';
-import Menus from './components/menus/menus';
+import App from './App';
 /*import {mostrarPantallaMesero, contextGeneral } from './contexts/generalcontext'*/
 
 ReactDOM.render(
   <React.StrictMode>
-    <div>
-      <Header />
-      <Menus />
-    </div>
+    <App />
   </React.StrictMode>,  
   document.getElementById('root')
 );

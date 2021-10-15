@@ -4,6 +4,7 @@ import burguer from './img/burguer.png'
 import dish from './img/dish 1.png'
 import chef from './img/chef.png'
 import './header.scss'
+import { Link } from 'react-router-dom'
 
 const Header = (props) => {
     const [style, setStyle] = useState(false);
@@ -15,9 +16,13 @@ const Header = (props) => {
            <img className='letters' src={letras} alt='burguerqueen'></img>
            <img className='burguer' src={burguer} alt='burguerqueen'></img>
            <h2 className='hours'>24 hrs</h2>
-           <img className='dish' src={dish} alt='burguerqueen' onClick={ () => setStyle(!style) } style={style ? bgStyle2 : bgStyle} ></img>
+           <Link to='/mesero' className='dish'>
+                <img src={dish} alt='burguerqueen' onClick={ () => setStyle(!style) } style={style ? bgStyle2 : bgStyle} ></img>
+           </Link>
            <h4 className='waiter'>Modo mesero</h4>
-           <img className='chef' src={chef} alt='burguerqueen' onClick={ () => setStyle(!style) } style={style ? bgStyle : bgStyle2}></img>
+           <Link to='/cocina' className='chef'>
+                <img src={chef} alt='burguerqueen' onClick={ () => setStyle(!style) } style={style ? bgStyle : bgStyle2}></img>
+           </Link>
            <h4 className='kitchen'>Modo cocina</h4>
         </header>   
     )
