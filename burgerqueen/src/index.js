@@ -5,12 +5,15 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import Header from './components/header/header';
 import Menus from './components/menus/menus';
+/*import {mostrarPantallaMesero, contextGeneral } from './contexts/generalcontext'*/
 
 ReactDOM.render(
-  <div>
-    <Header />
-    <Menus />
-  </div>,
+  <React.StrictMode>
+    <div>
+      <Header />
+      <Menus />
+    </div>
+  </React.StrictMode>,  
   document.getElementById('root')
 );
 
