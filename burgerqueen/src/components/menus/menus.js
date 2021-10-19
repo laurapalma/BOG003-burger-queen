@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 const Menus = (props) => {
-    const {name, onAction} = props;
+    const {onAction} = props;
     const [style, setStyle] = useState(false);
     const bgStyle = {color: '#62EFFF'}
     const bgStyle2 = { boxShadow: '#FFFFFF'}
@@ -14,15 +14,15 @@ const Menus = (props) => {
     <div>
         <button className='button-menu' id='breakfast'>
             <h3 className='menus' onClick={ () => {
-                // onAction(btnBreakfast.id); 
                 saveId = btnBreakfast.id;
+                onAction(saveId);
                 setStyle(!style);
             }} style={style ? bgStyle2 : bgStyle}>desayuno</h3>
         </button>
         <button className='button-menu' id='lunch'>
             <h3 className='menus' onClick={ () => {
-                // onAction(btnLunch.id);
                 saveId = btnLunch.id;
+                onAction(saveId);
                 setStyle(!style);
             } } style={style ? bgStyle : bgStyle2}>almuerzo</h3>
         </button>
