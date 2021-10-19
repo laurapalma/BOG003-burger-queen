@@ -10,22 +10,26 @@ import {
     Route
   } from "react-router-dom";
 
+
 function App() {
+    const handleAction = (id) => {
+        alert(id);
+    }
     return(
         <Router>
              <div>
                 <Header />
                 <Switch>
                     <Route path='/mesero'>
-                        <Menu />
-                        <TakingOrders />
-                        <TableStatus />
+                        <Menu name="Equis" onAction = {(id)=> handleAction(id)}  />
+                        <TakingOrders  />
+                        <TableStatus  />
                     </Route>
                     <Route path='/cocina'>
                         <Kitchen />
                     </Route>
                     <Route path='/'>
-                        <Menu />
+                        <Menu name="Equis" onAction = {(id)=> handleAction(id)}  />
                         <TakingOrders />
                         <TableStatus />
                     </Route>
