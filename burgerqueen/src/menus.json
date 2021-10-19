@@ -1,0 +1,39 @@
+{   "desayunos": 
+    {
+        "café americano": 5,
+        "café con leche": 7,
+        "sandwich jamón y queso": 10,
+        "jugo frutas": 7
+    },
+    "Almuerzo/cena":
+    {
+        "Hamburguesas":
+        {
+            "Simple res": 10,
+            "simple pollo": 10,
+            "simple vegetariana": 10,
+            "Doble res": 15,
+            "Doble pollo": 15,
+            "Doble vegetariana": 15
+        },
+        "Adiciones": 
+        {
+            "Queso": 1,
+            "Huevo": 1
+        },
+
+        "Acompañamientos":
+        {
+            "Papas fritas": 5,
+            "Aros de cebolla": 5
+        },
+
+        "Bebidas": 
+        {
+            "Agua 500 mL": 5,
+            "Agua 750 mL": 7,
+            "Bebida/gaseosa 500 mL": 7,
+            "Bebida/gaseosa 750 mL": 10
+        }
+    }
+}
