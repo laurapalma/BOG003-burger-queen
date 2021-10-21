@@ -1,8 +1,11 @@
 import React from 'react'
+import './tableStatus.scss'
 
 const Tablestatus = (props) => {
     return(
-        <h3 className='status'>Aqui se veran las mesas</h3>   
+        <div className='tablesContainer'>
+            <h3 className='status'>Aqui se veran las mesas</h3>   
+        </div>        
     )
 }
 

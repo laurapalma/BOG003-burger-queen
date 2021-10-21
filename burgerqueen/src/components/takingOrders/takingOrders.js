@@ -16,6 +16,7 @@ const Takingorders = ({menuData, menuState, on_change}) => {
                         name={item["key"]} 
                         value={menuState[item["key"]]} 
                         step="1" 
+                        min="0"
                         onChange = {on_change}
                     />
                     <p>

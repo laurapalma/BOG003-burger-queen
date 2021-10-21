@@ -1,0 +1,8 @@
+.containerPrincipal{
+    display: grid;
+    grid-template-columns: 300px 600px 300px;
+    grid-template-areas: 
+        "menucontainer takingorders tablestatus";
+
+}
+

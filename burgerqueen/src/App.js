@@ -4,7 +4,8 @@ import Menu from './components/menus/menus';
 import TableStatus from './components/tableStatus/tableStatus';
 import TakingOrders from './components/takingOrders/takingOrders';
 import Kitchen from './components/kitchen/kitchen';
-import Data from './components/menus/menus.json'
+import Data from './components/menus/menus.json';
+import './App.scss';
 import {
     BrowserRouter as Router,
     Switch,
@@ -43,7 +44,7 @@ function App() {
     }
     const initialState = {
         menuDiv: {
-                    menuData: lunchData,
+                    menuData: breakData,
                     menuState: initialMenuState,
                     totalValue: 0,
                 }
@@ -56,34 +57,39 @@ function App() {
                 <Header />
                 <Switch>
                     <Route path='/mesero'>
-                        <Menu 
-                            dispatch={dispatch}
-                            actionA={"actionBreak"}
-                            actionB={"actionLunch"}
-                        />
-                        <TakingOrders
-                            menuData={state.menuDiv.menuData}
-                            menuState={state.menuDiv.menuState}
-                            on_change={e => dispatch({ type: "changeValue", value: e.target.value, item: e.target.name})}
-                        />
-                        <TableStatus  />
+                        <div className='containerPrincipal'>
+                            <Menu 
+                                dispatch={dispatch}
+                                actionA={"actionBreak"}
+                                actionB={"actionLunch"}
+                            />
+                            <TakingOrders
+                                menuData={state.menuDiv.menuData}
+                                menuState={state.menuDiv.menuState}
+                                on_change={e => dispatch({ type: "changeValue", value: e.target.value, item: e.target.name})}
+                            />
+                            <TableStatus  />
+                        </div>
                     </Route>
                     <Route path='/cocina'>
                         <Kitchen />
                     </Route>
                     <Route path='/'>
-                        <Menu 
-                                dispatch={dispatch}
-                                actionA={"actionBreak"}
-                                actionB={"actionLunch"}
-                        />
-                        <TakingOrders
-                                menuData={state.menuDiv.menuData}
-                                menuState={state.menuDiv.menuState}
-                                on_change={e => dispatch({ type: "changeValue", value: e.target.value, item: e.target.name})}
-                        />
-                        <TableStatus />
+                        <div className='containerPrincipal'>
+                            <Menu 
+                                    dispatch={dispatch}
+                                    actionA={"actionBreak"}
+                                    actionB={"actionLunch"}
+                            />
+                            <TakingOrders
+                                    menuData={state.menuDiv.menuData}
+                                    menuState={state.menuDiv.menuState}
+                                    on_change={e => dispatch({ type: "changeValue", value: e.target.value, item: e.target.name})}
+                            />
+                            <TableStatus />
+                        </div>
                     </Route>
+                    
                 </Switch>
             </div>
         </Router>
