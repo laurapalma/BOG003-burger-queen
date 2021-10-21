@@ -4,12 +4,17 @@ import './takingOrders.scss'
 const Takingorders = ({menuData, menuState, on_change}) => {
     console.log('menuState', menuState)
     return (
-        <>
+        <section>
+            <input 
+                    className="nameUser"
+                    type="text"
+                    placeholder="Nombre del Cliente"
+                    />
         {menuData.map((item, i) => 
                 <div key={i} className='orderContainer'>
-                    <p>
+                    <h6>
                     {item.producto}
-                    </p>
+                    </h6>
                     <input 
                         type="number" 
                         id={item["key"] + "_id"} 
@@ -24,7 +29,7 @@ const Takingorders = ({menuData, menuState, on_change}) => {
                     </p>
                 </div>
         )}
-        </>
+        </section>
         
     )
 }

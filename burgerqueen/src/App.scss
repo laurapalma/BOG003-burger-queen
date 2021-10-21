@@ -1,6 +1,7 @@
 .containerPrincipal{
     display: grid;
-    grid-template-columns: 300px 600px 300px;
+    width: 100%;
+    grid-template-columns: 25% 50% 25%;
     grid-template-areas: 
         "menucontainer takingorders tablestatus";
 

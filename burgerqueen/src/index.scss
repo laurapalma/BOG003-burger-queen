@@ -1,26 +1,39 @@
+:root {
+      /*Colores*/
+  --pink: #FF96E0;
+  --ligth-blue: #62EFFF;
+  --ligth-purple: #342D57;
+}
+
 body {
   background-color: rgba(26, 22, 47, 1);
   width: 100%;
-  height: 100%;
+  height: 1024px;
   margin: 0;
   font-family: 'Ruda', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  .root {
+    height: 1024px;
+  }
 }
 
 header{
   background: linear-gradient(180deg, #1DE0FE -37.67%, #4A258F 49.32%, #4A258F 78%, #E271C1 140%);
   h2{
-    color: #FF96E0;
+    color: var(--pink);
   }   
   h4 {
-    color: #62EFFF; 
+    color: var(--blue-ligth); 
   }
 }
 
-/*code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}*/
 
+.nameUser {
+  font-size: 24px;
+  color: var(--pink);
+  background-color: var(--ligth-purple);
+  border-color: yellow;
+  border-radius: 10px;
+}
 

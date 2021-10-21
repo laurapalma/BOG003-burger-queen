@@ -1,13 +1,39 @@
-.orderContainer{
-    color: white;
-    display:grid;
-    grid-area: takingorders;
-    p{
-        align-self: center;
-        justify-self: center;
+section {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+    .orderContainer{
+        color: white;
+        display: grid;
+        width: 100%;
+        height: auto;
+        grid-area: takingorders;
+        grid-template-columns: 30% 40% 30%;
+        grid-template-areas: 
+            "Cantidad Producto Precio";
+       
+        p{
+            align-self: center;
+            justify-self: center;
+            grid-area: Precio;
+        }
+        input{
+            align-self: center;
+            justify-self: center;
+            grid-area: Cantidad;
+        }
+        h6 {
+            align-self: center;
+            justify-self: center;
+            grid-area: Producto;
+        }
     }
-    input{
-        align-self: center;
-        justify-self: center;
-    }
+}
+.nameUser {
+    align-self:flex-end;
+    width: 472px;
+    height: 35px;
+    margin-top: 15px;
+    margin-right: 30px;
 }
