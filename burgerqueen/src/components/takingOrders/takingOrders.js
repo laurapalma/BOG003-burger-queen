@@ -1,8 +1,30 @@
 import React from 'react'
+import './takingOrders.scss'
 
-const Takingorders = (props) => {
-    return(
-        <h3 className='status'>Aqui se tomaran los pedidos</h3>   
+const Takingorders = ({menuData, menuState, on_change}) => {
+    console.log('menuState', menuState)
+    return (
+        <>
+        {menuData.map((item, i) => 
+                <div key={i} className='orderContainer'>
+                    <p>
+                    {item.producto}
+                    </p>
+                    <input 
+                        type="number" 
+                        id={item["key"] + "_id"} 
+                        name={item["key"]} 
+                        value={menuState[item["key"]]} 
+                        step="1" 
+                        onChange = {on_change}
+                    />
+                    <p>
+                    {parseInt(menuState[item["key"]])*parseInt(item["precio"])}
+                    </p>
+                </div>
+        )}
+        </>
+        
     )
 }
 

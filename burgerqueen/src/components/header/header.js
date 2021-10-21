@@ -7,7 +7,7 @@ import './header.scss'
 import { Link } from 'react-router-dom'
 
 const Header = (props) => {
-    const [style, setStyle] = useState(false);
+    const [style, setStyle] = useState(true);
     const bgStyle = {color: '#62EFFF'}
     const bgStyle2 = { boxShadow: 'inset 2px 4px 50px 50px rgba(255,255,255,0.52)'}
 
