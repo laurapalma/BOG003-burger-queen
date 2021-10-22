@@ -28,14 +28,6 @@ header{
   }
 }
 
-
-.nameUser {
-  font-size: 24px;
-  color: var(--pink);
-  background-color: var(--ligth-purple);
-  border-color: yellow;
-  border-radius: 10px;
-}
 section {
   .orderContainer {
     h6 {
@@ -59,5 +51,23 @@ section {
   h3 {
       font-size: 24px;
       color: #FF96E0;
+  }
+  .nameUser {
+    font-size: 24px;
+    color: var(--pink);
+    background-color: var(--ligth-purple);
+    border-color: yellow;
+    border-radius: 10px;
+  }
+}
+
+.tablesContainer{
+  h4{
+    font-size: 24px;
+    color: var(--ligth-blue);
+  }
+  h3 {
+    font-size: 24px;
+    color: var(--ligth-blue);
   }
 }
