@@ -4,7 +4,7 @@ import './tableStatus.scss'
 const Tablestatus = (props) => {
     return(
         <div className='tablesContainer'>
-            <h3 className='status'>Aqui se veran las mesas</h3>   
+            <h4 className='status'>Aqui se veran las mesas</h4>   
         </div>        
     )
 }

@@ -24,7 +24,7 @@ header{
     color: var(--pink);
   }   
   h4 {
-    color: var(--blue-ligth); 
+    color: var(--ligth-blue); 
   }
 }
 
@@ -36,4 +36,28 @@ header{
   border-color: yellow;
   border-radius: 10px;
 }
-
+section {
+  .orderContainer {
+    h6 {
+      text-align: left;
+      font-size: 24px;
+      color: var(--pink);
+    }
+    input {
+      font-size: 24px;
+      text-align: center;
+      color: var(--pink);
+      border: 2px solid yellow;
+      border-radius: 3px;
+      background-color: var(--ligth-purple);
+    }
+    p{
+      font-size: 24px;
+      color:yellow;
+    }
+  }
+  h3 {
+      font-size: 24px;
+      color: #FF96E0;
+  }
+}

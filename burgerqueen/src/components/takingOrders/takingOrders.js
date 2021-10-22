@@ -5,17 +5,18 @@ const Takingorders = ({menuData, menuState, on_change}) => {
     console.log('menuState', menuState)
     return (
         <section>
-            <input 
+            <div className="infoTable">
+                <h3> Mesa 1</h3>
+                <input 
                     className="nameUser"
                     type="text"
-                    placeholder="Nombre del Cliente"
-                    />
+                    placeholder=" Nombre del Cliente"
+                />
+            </div>
         {menuData.map((item, i) => 
-                <div key={i} className='orderContainer'>
-                    <h6>
-                    {item.producto}
-                    </h6>
-                    <input 
+            <div key={i} className='orderContainer'>
+                <h6>{item.producto}</h6>
+                <input 
                         type="number" 
                         id={item["key"] + "_id"} 
                         name={item["key"]} 
@@ -23,11 +24,9 @@ const Takingorders = ({menuData, menuState, on_change}) => {
                         step="1" 
                         min="0"
                         onChange = {on_change}
-                    />
-                    <p>
-                    {parseInt(menuState[item["key"]])*parseInt(item["precio"])}
-                    </p>
-                </div>
+                />
+                <p> $ {parseInt(menuState[item["key"]])*parseInt(item["precio"])}</p>
+            </div>
         )}
         </section>
         
