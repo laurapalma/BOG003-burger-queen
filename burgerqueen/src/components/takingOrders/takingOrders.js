@@ -1,5 +1,6 @@
 import React from 'react'
 import './takingOrders.scss'
+import Modal from '../modal/modal.js'
 
 
 
@@ -23,6 +24,14 @@ const Takingorders = ({menuData, menuState, on_change, prices}) => {
                 }
             }
         }
+        return ( <Modal 
+            table={table}
+            name={name}
+            quants = {quants}
+            text = {text}
+            subtotal = {subtotal}
+            total = {prices}
+        />)
     }
     return (
         <section>
