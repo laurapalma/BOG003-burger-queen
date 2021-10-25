@@ -14,8 +14,8 @@ import {
 
 const breakData = Data[0]["desayunos"]["opciones"]
 const lunchData = Data[0]["Almuerzo/cena"]["opciones"]
-let initialMenuState = []
-const prices = []
+let initialMenuState = {}
+const prices = {}
 
 for (let item of breakData){
   initialMenuState[item["key"]] = "0"
@@ -25,6 +25,24 @@ for (let item of lunchData){
   initialMenuState[item["key"]] = "0"
   prices[item["key"]] = item["precio"]
 }
+
+
+const mult = (obj1, obj2) => {
+    let sum = 0;
+    const arr1 = Object.values(obj1);
+    const arr2 = Object.values(obj2);
+
+    for(let i=0; i< arr2.length; i++) {
+        sum += parseInt(arr1[i])*arr2[i];
+    }
+    return sum
+}
+
+
+// initialMenu = [5, 2, 0, 1];
+// prices = [10, 5, 20, 10];
+// total = initialMenu * prices = [50, 10, 0, 10];
+// total.sum => 50 + 10 + 0 + 10 = 70 
 
 function App() {
     const reducer = (state, action) => {
@@ -36,8 +54,10 @@ function App() {
         case "changeValue":
             let newMenuState = state.menuDiv.menuState
             newMenuState[action.item] = action.value
+            let thePrices = mult(newMenuState, prices);
             console.log('actionValue', action.value)
-            return {...state, menuDiv: {...state.menuDiv, menuState: newMenuState}}
+            console.log('Prices afuera total', thePrices)
+            return {...state, menuDiv: {...state.menuDiv, menuState: newMenuState, totalPrices: thePrices}}
         default:
         throw new Error();
         } 
@@ -46,7 +66,7 @@ function App() {
         menuDiv: {
                     menuData: breakData,
                     menuState: initialMenuState,
-                    totalValue: 0,
+                    totalPrices: 0,
                 }
     }
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -67,6 +87,7 @@ function App() {
                                 menuData={state.menuDiv.menuData}
                                 menuState={state.menuDiv.menuState}
                                 on_change={e => dispatch({ type: "changeValue", value: e.target.value, item: e.target.name})}
+                                prices = {state.menuDiv.totalPrices}
                             />
                             <TableStatus  />
                         </div>
@@ -85,6 +106,7 @@ function App() {
                                     menuData={state.menuDiv.menuData}
                                     menuState={state.menuDiv.menuState}
                                     on_change={e => dispatch({ type: "changeValue", value: e.target.value, item: e.target.name})}
+                                    prices = {state.menuDiv.totalPrices}
                             />
                             <TableStatus />
                         </div>
