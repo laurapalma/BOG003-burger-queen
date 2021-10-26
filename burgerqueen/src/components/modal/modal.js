@@ -1,8 +1,15 @@
 import React from 'react'
+import './modal.scss'
 
-const Modal = ({table, name, quants, text, subtotal, total }) => {
+
+const Modal = ({children, isOpen, closeModal}) => {
     return(
-        <h1> {name} </h1>   
+        <article className={`modal ${isOpen && 'isOpen'}`}>
+            <div className='modalContainer'>
+                <button className='close' onClick={closeModal}>X</button>
+                {children}
+            </div>
+        </article> 
     )
 }
 

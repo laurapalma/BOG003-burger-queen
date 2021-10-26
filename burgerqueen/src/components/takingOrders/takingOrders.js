@@ -1,6 +1,8 @@
 import React from 'react'
 import './takingOrders.scss'
 import Modal from '../modal/modal.js'
+import { useModal } from '../../hooks/useModal'
+import '../modal/modal.scss'
 
 
 
@@ -24,15 +26,18 @@ const Takingorders = ({menuData, menuState, on_change, prices}) => {
                 }
             }
         }
-        return ( <Modal 
+       /* return ( <Modal 
             table={table}
             name={name}
             quants = {quants}
             text = {text}
             subtotal = {subtotal}
             total = {prices}
-        />)
+        />) */
     }
+
+    const [isOpenModal, openModal, closeModal] = useModal(false); 
+
     return (
         <section>
                 <div className="infoTable">
@@ -67,7 +72,11 @@ const Takingorders = ({menuData, menuState, on_change, prices}) => {
                 </div>
                 )}
                 <p>Total: {prices} </p>
-                <button onClick = {clickEnviar}>Enviar</button>
+                <button onClick = { () =>{clickEnviar() ; openModal()}}>Enviar</button>
+                <Modal isOpen ={isOpenModal} closeModal={closeModal}>
+                    <h1>{name}</h1>
+                    <h2>Hola</h2> 
+                </Modal>
         </section>   
     )
 }
