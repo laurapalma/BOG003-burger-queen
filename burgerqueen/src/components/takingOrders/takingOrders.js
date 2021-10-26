@@ -2,43 +2,37 @@ import React from 'react'
 import './takingOrders.scss'
 import Modal from '../modal/modal.js'
 import { useModal } from '../../hooks/useModal'
+import { ModalContent } from '../modalContent/modalContent.js'
 import '../modal/modal.scss'
 
 
 
 const Takingorders = ({menuData, menuState, on_change, prices}) => {
-    let table
-    let name
-    let quants
-    let text = [];
-    let subtotal = [];
-    const clickEnviar = () => {
-        table = document.getElementById('selectTable').value;
-        name = document.getElementById('nameUser').value;
+
+    let text = [], subtotal = [];
+    //const clickEnviar = () => {
+        // let table = document.getElementById('selectTable').value;
+        // let name = document.getElementById('nameUser').value;
         const keys = Object.entries(menuState); // Para obtener arreglo con las propiedades
-        quants = keys.filter((key)=> key[1] !== '0'); // Para obtener los productos (key) que pidió el cliente
+        let quants = keys.filter((key)=> key[1] !== '0'); // Para obtener los productos (key) que pidió el cliente
+        let cant  = quants.map((e)=> e[1]);
         const letras = quants.map((e)=> e[0]);  // Para obtener solo las keys 
         for (let i=0; i < letras.length; i++){ // ciclo que recorre las keys de los productos seleccionados
             for (let j=0; j< menuData.length; j++){  // Ciclo anidado que recorre cada elemento del menú 
                 if (menuData[j].key === letras[i]){  // Validar si la key actual es igual a alguna de las que tiene el menú
                     text.push(menuData[j].producto); // Si se cumple la condición anterior, extraemos el nombre de ese producto
-                    subtotal.push(quants[i][1]*menuData[j].precio); // obtenemos el precio total del producto actual 
+                    subtotal.push(parseInt(quants[i][1])*parseInt(menuData[j].precio)); // obtenemos el precio total del producto actual 
                 }
             }
         }
-       /* return ( <Modal 
-            table={table}
-            name={name}
-            quants = {quants}
-            text = {text}
-            subtotal = {subtotal}
-            total = {prices}
-        />) */
-    }
+        console.log('length', letras, 'quants', quants);
+        //return 
+    //}
 
     const [isOpenModal, openModal, closeModal] = useModal(false); 
 
     return (
+        <>
         <section>
                 <div className="infoTable">
                     <select id='selectTable' onChange={e=> e.target.value}>
@@ -72,12 +66,20 @@ const Takingorders = ({menuData, menuState, on_change, prices}) => {
                 </div>
                 )}
                 <p>Total: {prices} </p>
-                <button onClick = { () =>{clickEnviar() ; openModal()}}>Enviar</button>
+                <button onClick = { () =>{ openModal(); } }>Enviar</button>
                 <Modal isOpen ={isOpenModal} closeModal={closeModal}>
-                    <h1>{name}</h1>
-                    <h2>Hola</h2> 
+                    <ModalContent
+                    /* table={table}
+                    name={name} */
+                    quants={cant}
+                    text={text}
+                    subtotal={subtotal}
+                    prices={prices}    
+                    />
                 </Modal>
-        </section>   
+        </section> 
+        
+        </> 
     )
 }
 

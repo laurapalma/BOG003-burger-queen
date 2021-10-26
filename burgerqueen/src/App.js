@@ -5,7 +5,6 @@ import TableStatus from './components/tableStatus/tableStatus';
 import TakingOrders from './components/takingOrders/takingOrders';
 import Kitchen from './components/kitchen/kitchen';
 import Data from './components/menus/menus.json';
-import Modal from './components/modal/modal';
 import './App.scss';
 import {
     BrowserRouter as Router,
