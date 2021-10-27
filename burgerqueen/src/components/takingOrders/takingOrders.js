@@ -7,15 +7,16 @@ import '../modal/modal.scss'
 
 
 
-const Takingorders = ({menuData, menuState, on_change, prices}) => {
+const Takingorders = ({state, menuData, menuState, on_change, handleInputChange, prices}) => {
 
-    let text = [], subtotal = [];
-    //const clickEnviar = () => {
-        // let table = document.getElementById('selectTable').value;
-        // let name = document.getElementById('nameUser').value;
+    let text=[], subtotal=[], cant, name, table, quants 
+
+        name = state.name;
+        table = state.table;
         const keys = Object.entries(menuState); // Para obtener arreglo con las propiedades
-        let quants = keys.filter((key)=> key[1] !== '0'); // Para obtener los productos (key) que pidió el cliente
-        let cant  = quants.map((e)=> e[1]);
+        quants = keys.filter((key)=> key[1] !== '0'); // Para obtener los productos (key) que pidió el cliente
+        cant  = quants.map((e)=> e[1]);
+        console.log('adentro cant', cant);
         const letras = quants.map((e)=> e[0]);  // Para obtener solo las keys 
         for (let i=0; i < letras.length; i++){ // ciclo que recorre las keys de los productos seleccionados
             for (let j=0; j< menuData.length; j++){  // Ciclo anidado que recorre cada elemento del menú 
@@ -25,9 +26,7 @@ const Takingorders = ({menuData, menuState, on_change, prices}) => {
                 }
             }
         }
-        console.log('length', letras, 'quants', quants);
-        //return 
-    //}
+
 
     const [isOpenModal, openModal, closeModal] = useModal(false); 
 
@@ -35,7 +34,7 @@ const Takingorders = ({menuData, menuState, on_change, prices}) => {
         <>
         <section>
                 <div className="infoTable">
-                    <select id='selectTable' onChange={e=> e.target.value}>
+                    <select id='selectTable' onChange= {e => handleInputChange(e)} name='table' value = {state.table}>
                         <option value='1'>Mesa 1</option>
                         <option value='2'>Mesa 2</option>
                         <option value='3'>Mesa 3</option>
@@ -46,8 +45,11 @@ const Takingorders = ({menuData, menuState, on_change, prices}) => {
                     <input 
                         className="nameUser"
                         id='nameUser'
+                        name='name'
                         type="text"
                         placeholder=" Nombre del Cliente"
+                        value = {state.name}
+                        onChange = {e => handleInputChange(e)}
                     />
                 </div>
                 {menuData.map((item, i) => 
@@ -62,22 +64,23 @@ const Takingorders = ({menuData, menuState, on_change, prices}) => {
                             min="0"
                             onChange = {on_change}
                     />
+                    {console.log('TakOrd', menuState[item["key"]])}
                     <p> $ {parseInt(menuState[item["key"]])*parseInt(item["precio"])}</p>
                 </div>
                 )}
                 <p>Total: {prices} </p>
-                <button onClick = { () =>{ openModal(); } }>Enviar</button>
-                <Modal isOpen ={isOpenModal} closeModal={closeModal}>
+                <button onClick = { async () =>{ openModal(); } }>Enviar</button>
+        </section> 
+        <Modal isOpen ={isOpenModal} closeModal={closeModal}>
                     <ModalContent
-                    /* table={table}
-                    name={name} */
+                    table={table}
+                    name={name}
                     quants={cant}
                     text={text}
                     subtotal={subtotal}
                     prices={prices}    
                     />
-                </Modal>
-        </section> 
+        </Modal>
         
         </> 
     )

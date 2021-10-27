@@ -48,26 +48,28 @@ function App() {
     const reducer = (state, action) => {
         switch (action.type) {
         case "actionBreak":
-            return {...state, menuDiv: {...state.menuDiv, menuData: breakData}}
+            return {...state, menuData: breakData}
         case "actionLunch":
-            return {...state, menuDiv: {...state.menuDiv, menuData: lunchData}}
+            return {...state, menuData: lunchData}
         case "changeValue":
-            let newMenuState = state.menuDiv.menuState
+            let newMenuState = state.menuState
             newMenuState[action.item] = action.value
             let thePrices = mult(newMenuState, prices);
-            console.log('actionValue', action.value)
-            console.log('Prices afuera total', thePrices)
-            return {...state, menuDiv: {...state.menuDiv, menuState: newMenuState, totalPrices: thePrices}}
+            return {...state, menuState: newMenuState, totalPrices: thePrices}
+        case "changeInputs":
+            return {...state, [action.fields]: action.inputs}
         default:
         throw new Error();
         } 
     }
     const initialState = {
-        menuDiv: {
-                    menuData: breakData,
-                    menuState: initialMenuState,
-                    totalPrices: 0,
-                }
+        
+        menuData: breakData,
+        menuState: initialMenuState,
+        totalPrices: 0,
+        name: '',
+        table:'',
+        
     }
     const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -84,10 +86,12 @@ function App() {
                                 actionB={"actionLunch"}
                             />
                             <TakingOrders
-                                menuData={state.menuDiv.menuData}
-                                menuState={state.menuDiv.menuState}
+                                state = {state}
+                                menuData={state.menuData}
+                                menuState={state.menuState}
                                 on_change={e => dispatch({ type: "changeValue", value: e.target.value, item: e.target.name})}
-                                prices = {state.menuDiv.totalPrices}
+                                prices = {state.totalPrices}
+                                handleInputChange={e => dispatch({type: "changeInputs", fields: e.target.name, inputs: e.target.value})}
                             />
                             <TableStatus  />
                         </div>
@@ -103,10 +107,12 @@ function App() {
                                     actionB={"actionLunch"}
                             />
                             <TakingOrders
-                                    menuData={state.menuDiv.menuData}
-                                    menuState={state.menuDiv.menuState}
+                                    state = {state}
+                                    menuData={state.menuData}
+                                    menuState={state.menuState}
                                     on_change={e => dispatch({ type: "changeValue", value: e.target.value, item: e.target.name})}
-                                    prices = {state.menuDiv.totalPrices}
+                                    prices = {state.totalPrices}
+                                    handleInputChange={e => dispatch({type: "changeInputs", fields: e.target.name, inputs: e.target.value})}
                             />
                             <TableStatus />
                         </div>
