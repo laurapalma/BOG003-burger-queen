@@ -1,9 +1,15 @@
 section {
   display: flex;
   flex-direction: column;
-  height: 890px;
+  height: auto;
   overflow-y: scroll;
 
+  .infoTable {
+    select {
+      width: 120px;
+      height: 50px;
+    }
+  }
     .orderContainer{
         color: white;
         display: grid;
@@ -52,5 +58,35 @@ section {
         height: 35px;
         margin-bottom: 25px;
         margin-right: 20px;
+    }
+    .totalContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-top: 20px;
+        margin-right: 20px;
+        p {
+            margin-left: 10px;
+        }
+        div {
+            display: flex;
+            border-top: 3px solid #62EFFF;
+            width: 150px;
+            margin-left: 80px;
+            justify-content: center;
+            p {
+                justify-self:  center;
+            }
+        }
+    }    
+    button {
+        align-self: center;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        padding: 0px;
+        width: 20vh;
+        height: 7vh;
+        border: 2px solid yellow;
+        border-radius: 8px;
     }
 }

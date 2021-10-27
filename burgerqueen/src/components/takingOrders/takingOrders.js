@@ -68,7 +68,12 @@ const Takingorders = ({state, menuData, menuState, on_change, handleInputChange,
                     <p> $ {parseInt(menuState[item["key"]])*parseInt(item["precio"])}</p>
                 </div>
                 )}
-                <p>Total: {prices} </p>
+                <div className="totalContainer">
+                        <p>Total: </p>
+                    <div>
+                        <p>$ {prices}</p>
+                    </div>
+                </div>
                 <button onClick = { async () =>{ openModal(); } }>Enviar</button>
         </section> 
         <Modal isOpen ={isOpenModal} closeModal={closeModal}>
