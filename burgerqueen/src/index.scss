@@ -105,6 +105,7 @@ article {
     border-radius: 23px;
     
     h1 {
+      font-size: 30px;
       color: var(--pink);
     }
 
@@ -116,7 +117,14 @@ article {
       color: yellow;
       font-size: 24px;
     }
-    
+    .childrenContainer{
+      button{
+        color: var(--pink);
+        background-color: var(--ligth-purple);
+        font-size:24px;
+        border: 2px solid yellow;
+      }
+    }
   }
 }
 
