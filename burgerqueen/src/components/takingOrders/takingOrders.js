@@ -35,6 +35,7 @@ const Takingorders = ({state, menuData, menuState, on_change, handleInputChange,
         <section>
                 <div className="infoTable">
                     <select id='selectTable' onChange= {e => handleInputChange(e)} name='table' value = {state.table}>
+                        <option value='0'>Mesas</option>
                         <option value='1'>Mesa 1</option>
                         <option value='2'>Mesa 2</option>
                         <option value='3'>Mesa 3</option>

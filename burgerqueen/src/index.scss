@@ -97,3 +97,28 @@ section {
     color: var(--ligth-blue);
   }
 }
+
+article {
+  .modalContainer{
+    background-color: var(--ligth-purple);
+    border: 2px solid yellow;
+    border-radius: 23px;
+    
+    h1 {
+      color: var(--pink);
+    }
+
+    h2 {
+      color: var(--pink);
+    }
+
+    p{
+      color: yellow;
+      font-size: 24px;
+    }
+    
+  }
+}
+
+
+

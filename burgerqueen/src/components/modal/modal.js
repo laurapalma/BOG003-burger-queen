@@ -1,13 +1,19 @@
 import React from 'react'
 import './modal.scss'
+import equis from './img/equis.png'
 
 
 const Modal = ({children, isOpen, closeModal}) => {
     return(
         <article className={`modal ${isOpen && 'isOpen'}`}>
             <div className='modalContainer'>
-                <button className='close' onClick={closeModal}>X</button>
-                {children}
+                <div className='closeContainer'>                    
+                    <img className='close' onClick={closeModal} src={equis} alt='equis'/>
+                </div>
+                <h1>Resumen del Pedido</h1>
+                <div className='childrenContainer'>
+                    {children}
+                </div>
             </div>
         </article> 
     )
