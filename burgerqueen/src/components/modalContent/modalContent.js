@@ -1,4 +1,18 @@
+import React, {useEffect} from 'react'
+import {collection, getDocs} from 'firebase/firestore'
+import db from '../firebase/firebaseConfig.js'
+
+
+
 export const ModalContent = ({name, table, subtotal, quants, text, prices}) => {
+    useEffect(() => {
+        const getData =  async () => {
+            const datos = await getDocs(collection(db, 'pedidos'));
+            console.log('Firebase: ', datos.docs[0].data());
+        }
+        getData();
+        
+    }, []);
     if (quants) {
         return(
             <>
