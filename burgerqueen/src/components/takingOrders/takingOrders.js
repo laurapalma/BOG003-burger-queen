@@ -84,7 +84,8 @@ const Takingorders = ({state, menuData, menuState, on_change, handleInputChange,
                     quants={cant}
                     text={text}
                     subtotal={subtotal}
-                    prices={prices}    
+                    prices={prices}  
+                    closeModal={closeModal}  
                     />
         </Modal>
         

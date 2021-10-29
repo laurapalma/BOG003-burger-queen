@@ -1,18 +1,24 @@
 import React, {useEffect} from 'react'
-import {collection, getDocs} from 'firebase/firestore'
-import db from '../firebase/firebaseConfig.js'
+import { createOrder, getOrders, getOrder, updateOrder } from '../firebase/functionsFirebase.js'
 
 
-
-export const ModalContent = ({name, table, subtotal, quants, text, prices}) => {
-    useEffect(() => {
-        const getData =  async () => {
-            const datos = await getDocs(collection(db, 'pedidos'));
-            console.log('Firebase: ', datos.docs[0].data());
+export const ModalContent = ({name, table, subtotal, quants, text, prices, closeModal}) => {
+    /* useEffect(() => {
+        const callOrders = async () => { 
+            createOrder(4, 'Laura', 17, 'café', 17, 10, 'pendiente');
+            const querySnapshot =  await getOrders();
+            querySnapshot.forEach((doc) => {
+                console.log(doc.data());    
+            })
+            const orderById = await getOrder('FuL2iskyrssmKw3VbHWf');
+           // console.log('con el Id', orderById.data());
+            updateOrder('FuL2iskyrssmKw3VbHWf', {
+                state: 'ok'
+            })
+            console.log('Actualizado', orderById.data());
         }
-        getData();
-        
-    }, []);
+        callOrders()
+    }, []); */
     if (quants) {
         return(
             <>
@@ -30,7 +36,7 @@ export const ModalContent = ({name, table, subtotal, quants, text, prices}) => {
                 <h2 className='total'>Total a pagar</h2>
                 <p className='totalNumber'> ${prices} </p>
             </div>
-            <button>Confirmar Pedido</button>
+            <button onClick={ (e) => {createOrder({table}, {name}, {quants}, {text}, {subtotal}, {prices}, 'enviado'); closeModal()}}>Confirmar Pedido</button>
             
         
             </>
