@@ -3,22 +3,7 @@ import { createOrder, getOrders, getOrder, updateOrder } from '../firebase/funct
 
 
 export const ModalContent = ({name, table, subtotal, quants, text, prices, closeModal}) => {
-    /* useEffect(() => {
-        const callOrders = async () => { 
-            createOrder(4, 'Laura', 17, 'café', 17, 10, 'pendiente');
-            const querySnapshot =  await getOrders();
-            querySnapshot.forEach((doc) => {
-                console.log(doc.data());    
-            })
-            const orderById = await getOrder('FuL2iskyrssmKw3VbHWf');
-           // console.log('con el Id', orderById.data());
-            updateOrder('FuL2iskyrssmKw3VbHWf', {
-                state: 'ok'
-            })
-            console.log('Actualizado', orderById.data());
-        }
-        callOrders()
-    }, []); */
+    
     if (quants) {
         return(
             <>

@@ -1,0 +1,67 @@
+.orderkitchens{
+
+    display: flex;
+    flex-flow: row wrap;
+    width: 1366px;
+    height:1024px;
+    justify-content: space-around;
+    
+
+    .orderSummary{
+        background-color: var(--ligth-purple);
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        height: 800px;
+        margin-top: 50px;
+        border: 3px yellow solid;
+        border-radius: 10px;
+        overflow-y: auto;
+        margin-left: 15px;
+
+
+        h1{
+            color: var(--pink);
+            align-self: center;
+        }
+
+        .products{
+            display: flex;
+            flex-direction: row;
+            font-size: 24px;  
+            margin-left: 28px;
+            
+            h4{
+                margin-right: 10px; 
+                justify-self: center;
+                font-size: 24px;
+                color: yellow;
+            }
+
+            h3{
+                color: var(--pink);
+            }
+
+            
+        }
+
+        button{
+            box-sizing: border-box;
+            font-size: 30px;
+            align-self: center;
+            justify-self: center;
+            width: 20vh;
+            //height: 7vh;
+            margin-bottom: 30px;
+            padding-right: 10px;
+            padding-left: 10px;
+            margin-top: 30px;
+            background-color: #E76262;
+            border: 3px yellow solid;
+            border-radius: 10px;
+            color: #342D57
+            ;
+        }
+
+    }    
+}
