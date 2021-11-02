@@ -10,13 +10,12 @@ import '../modal/modal.scss'
 const Takingorders = ({state, menuData, menuState, on_change, handleInputChange, prices}) => {
 
     let text=[], subtotal=[], cant, name, table, quants 
-
+        let message = document.getElementById('message')
         name = state.name;
         table = state.table;
         const keys = Object.entries(menuState); // Para obtener arreglo con las propiedades
         quants = keys.filter((key)=> key[1] !== '0'); // Para obtener los productos (key) que pidió el cliente
-        cant  = quants.map((e)=> e[1]);
-        console.log('adentro cant', cant);
+        cant  = quants.map((e)=> e[1]); 
         const letras = quants.map((e)=> e[0]);  // Para obtener solo las keys 
         for (let i=0; i < letras.length; i++){ // ciclo que recorre las keys de los productos seleccionados
             for (let j=0; j< menuData.length; j++){  // Ciclo anidado que recorre cada elemento del menú 
@@ -27,8 +26,18 @@ const Takingorders = ({state, menuData, menuState, on_change, handleInputChange,
             }
         }
 
-
     const [isOpenModal, openModal, closeModal] = useModal(false); 
+ 
+    const validationOrder =() => {
+        if (message === null) {
+            alert('No has hecho un pedido')
+            window.location.reload()         
+        }else if (table === '' || name === ''){
+            message.innerHTML= `Por favor rellene todos los campos`        
+        } else {
+            openModal()
+        }
+    }
 
     return (
         <>
@@ -53,6 +62,7 @@ const Takingorders = ({state, menuData, menuState, on_change, handleInputChange,
                         onChange = {e => handleInputChange(e)}
                     />
                 </div>
+                <p id='message' className='message'></p>
                 {menuData.map((item, i) => 
                 <div key={i} className='orderContainer'>
                     <h6>{item.producto}</h6>
@@ -65,7 +75,6 @@ const Takingorders = ({state, menuData, menuState, on_change, handleInputChange,
                             min="0"
                             onChange = {on_change}
                     />
-                    {console.log('TakOrd', menuState[item["key"]])}
                     <p> $ {parseInt(menuState[item["key"]])*parseInt(item["precio"])}</p>
                 </div>
                 )}
@@ -75,7 +84,7 @@ const Takingorders = ({state, menuData, menuState, on_change, handleInputChange,
                         <p>$ {prices}</p>
                     </div>
                 </div>
-                <button onClick = { async () =>{ openModal(); } }>Enviar</button>
+                <button onClick = { () =>{ validationOrder(); } }>Enviar</button>
         </section> 
         <Modal isOpen ={isOpenModal} closeModal={closeModal}>
                     <ModalContent

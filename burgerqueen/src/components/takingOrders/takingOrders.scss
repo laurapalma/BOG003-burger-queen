@@ -4,11 +4,15 @@ section {
   height: auto;
   overflow-y: scroll;
 
+  .message {
+    align-self: center;
+  }
+
   .infoTable {
     select {
       width: 120px;
       height: 50px;
-    }
+    }    
   }
     .orderContainer{
         color: white;
