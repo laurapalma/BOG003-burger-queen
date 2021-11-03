@@ -2,24 +2,36 @@ import { onSnapshot, collection } from "firebase/firestore";
 import db  from "../firebase/firebaseConfig"
 import { useEffect, useState} from "react";
 import '../kitchen/kitchen.scss'
+import { updateOrder } from "../firebase/functionsFirebase";
 
 const Kitchen = () => {
-
+    const handleUpdate = (id, state_) => {
+        updateOrder(id, {state: state_});
+    }
     const [value, setValue] = useState()
+    const filterHelp = (e) => {
+        if ( (e.state !== "Entregado") || (e.state !== "Listo")) {
+            return true
+        }
+        else {
+            return false
+        }
+    }
     
     useEffect(() => {         
         const callOrders = () => { 
             onSnapshot(collection(db, "orders"), (querySnapshot) => {
                 let clients = []
+                let orders
                     querySnapshot.forEach((doc) => {
                     clients.push({...doc.data(), id: doc.id});
                 });
-               console.log(clients); 
-               setValue(clients);    
+                orders = clients.filter((e) => filterHelp(e));
+                setValue(orders);    
             });           
         }
         callOrders()
-    }, []); 
+    }, []);  
     console.log(value);
     return(
         <>
@@ -32,8 +44,10 @@ const Kitchen = () => {
                                 <h4>{quant}</h4>
                                 <h3>{item.product.text[i]}</h3>
                             </div>
-                            )}   
-                        <button>Recibido</button> 
+                            )}
+                    {item.state === 'Enviado'
+                    ? <button className='btnReceived' onClick={()=> handleUpdate(item.id, 'En proceso')}>Preparar</button> 
+                    : <button className='btnReady' onClick={()=> handleUpdate(item.id, 'Listo')}>Listo</button>}    
                         <p></p>                 
                     </div>
                 )}

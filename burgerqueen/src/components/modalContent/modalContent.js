@@ -19,7 +19,7 @@ export const ModalContent = ({initialState, name, table, subtotal, quants, text,
                 <h2 className='total'>Total a pagar</h2>
                 <p className='totalNumber'> ${prices} </p>
             </div>
-            <button onClick={ () => {createOrder({table}, {name}, {quants}, {text}, {subtotal}, {prices}, 'enviado'); closeModal(); setTimeout(()=> window.location.reload(), 2000)} }>Confirmar Pedido</button>
+            <button onClick={ () => {createOrder({table}, {name}, {quants}, {text}, {subtotal}, {prices}, 'Enviado'); closeModal(); setTimeout(()=> window.location.reload(), 2000)} }>Confirmar Pedido</button>
             
         
             </>
