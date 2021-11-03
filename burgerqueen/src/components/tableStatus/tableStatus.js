@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import './tableStatus.scss'
-import { onSnapshot, collection, orderBy, query, where } from "firebase/firestore";
+import { onSnapshot, collection, orderBy, query } from "firebase/firestore";
 import db  from "../firebase/firebaseConfig"
 import { updateOrder } from '../firebase/functionsFirebase';
 

@@ -2,7 +2,7 @@ import { async } from "@firebase/util";
 import { collection, addDoc, getDocs, getDoc, doc, updateDoc } from "firebase/firestore";
 import db from './firebaseConfig';
 
-export const createOrder = async (table, name, quant, product, subtotal, prices, state) => {
+export const createOrder = async (table, name, quant, product, subtotal, prices, state, date, tempInit, tempEnd) => {
     return await addDoc(collection(db, 'orders'), {
         table,
         name,
@@ -10,7 +10,11 @@ export const createOrder = async (table, name, quant, product, subtotal, prices,
         product,
         subtotal,
         prices,
-        state
+        state,
+        date,
+        tempInit,
+        tempEnd,
+
     })
 }
 export const getOrders =  async () => {

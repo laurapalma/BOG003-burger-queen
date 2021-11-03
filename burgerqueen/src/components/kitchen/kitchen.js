@@ -1,38 +1,41 @@
-import { onSnapshot, collection } from "firebase/firestore";
+import { onSnapshot, collection, orderBy, query } from "firebase/firestore";
 import db  from "../firebase/firebaseConfig"
 import { useEffect, useState} from "react";
 import '../kitchen/kitchen.scss'
 import { updateOrder } from "../firebase/functionsFirebase";
 
 const Kitchen = () => {
-    const handleUpdate = (id, state_) => {
-        updateOrder(id, {state: state_});
+
+    const handleUpdateInit = (id, state_, temp1) => {
+        updateOrder(id, {
+            state: state_,
+            tempInit: temp1
+        });
     }
-    const [value, setValue] = useState()
-    const filterHelp = (e) => {
-        if ( (e.state !== "Entregado") || (e.state !== "Listo")) {
-            return true
-        }
-        else {
-            return false
-        }
+    const handleUpdateEnd = (id, state_, temp2) => {
+        updateOrder(id, {
+            state: state_,
+            tempEnd: temp2
+        });
     }
-    
+    const [value, setValue] = useState();
+
+
     useEffect(() => {         
-        const callOrders = () => { 
-            onSnapshot(collection(db, "orders"), (querySnapshot) => {
+        const callOrders = () => {
+            const orderRef = collection(db, "orders"); 
+            onSnapshot(query(orderRef, orderBy("date", "desc")), (querySnapshot) => {
                 let clients = []
                 let orders
                     querySnapshot.forEach((doc) => {
                     clients.push({...doc.data(), id: doc.id});
                 });
-                orders = clients.filter((e) => filterHelp(e));
-                setValue(orders);    
+                orders = clients.filter((e) =>  e.state !== "Entregado");
+                setValue(orders); 
             });           
         }
         callOrders()
     }, []);  
-    console.log(value);
     return(
         <>
             <div className='orderkitchens'>
@@ -44,11 +47,17 @@ const Kitchen = () => {
                                 <h4>{quant}</h4>
                                 <h3>{item.product.text[i]}</h3>
                             </div>
-                            )}
-                    {item.state === 'Enviado'
-                    ? <button className='btnReceived' onClick={()=> handleUpdate(item.id, 'En proceso')}>Preparar</button> 
-                    : <button className='btnReady' onClick={()=> handleUpdate(item.id, 'Listo')}>Listo</button>}    
-                        <p></p>                 
+                            )}    
+                    {(() => {switch (item.state) {
+                        case 'Enviado':
+                            return <button className='btnReceived' onClick={()=> handleUpdateInit(item.id, 'En proceso', new Date().getMinutes())}>Preparar</button>
+                        case 'En proceso':
+                            return <button className='btnReady' onClick={()=> handleUpdateEnd(item.id, 'Listo', new Date().getMinutes())}>Listo</button>
+                        case 'Listo':
+                            return <p>¡Tardaste {item.tempEnd-item.tempInit} Minutos en preparar la orden!</p>
+                        default:
+                            break;
+                    }})()}              
                     </div>
                 )}
             </div>

@@ -25,6 +25,12 @@
             align-self: center;
         }
 
+        p {
+            color: var(--ligth-blue);
+            text-align: center;
+            font-size: 24px;
+        }
+
         .products{
             display: flex;
             flex-direction: row;
