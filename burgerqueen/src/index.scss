@@ -96,6 +96,11 @@ section {
     font-size: 24px;
     color: var(--ligth-blue);
   }
+  button {
+    background-color: var(--ligth-purple);
+    color: var(--pink);
+    border: 1px solid yellow;
+  }
 }
 
 article {

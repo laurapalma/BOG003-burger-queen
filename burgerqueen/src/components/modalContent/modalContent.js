@@ -1,8 +1,6 @@
-import React, {useEffect} from 'react'
-import { createOrder, getOrders, getOrder, updateOrder } from '../firebase/functionsFirebase.js'
+import { createOrder } from '../firebase/functionsFirebase.js'
 
-
-export const ModalContent = ({name, table, subtotal, quants, text, prices, closeModal}) => {
+export const ModalContent = ({initialState, name, table, subtotal, quants, text, prices, closeModal}) => {
     
     if (quants) {
         return(
@@ -21,7 +19,7 @@ export const ModalContent = ({name, table, subtotal, quants, text, prices, close
                 <h2 className='total'>Total a pagar</h2>
                 <p className='totalNumber'> ${prices} </p>
             </div>
-            <button onClick={ (e) => {createOrder({table}, {name}, {quants}, {text}, {subtotal}, {prices}, 'enviado'); closeModal()}}>Confirmar Pedido</button>
+            <button onClick={ () => {createOrder({table}, {name}, {quants}, {text}, {subtotal}, {prices}, 'enviado'); closeModal(); setTimeout(()=> window.location.reload(), 2000)} }>Confirmar Pedido</button>
             
         
             </>

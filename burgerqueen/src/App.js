@@ -86,6 +86,7 @@ function App() {
                                 actionB={"actionLunch"}
                             />
                             <TakingOrders
+                                initialState = {initialState}
                                 state = {state}
                                 menuData={state.menuData}
                                 menuState={state.menuState}

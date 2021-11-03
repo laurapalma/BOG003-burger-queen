@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import './tableStatus.scss'
-import { onSnapshot, collection } from "firebase/firestore";
+import { onSnapshot, collection, orderBy, query } from "firebase/firestore";
 import db  from "../firebase/firebaseConfig"
 
 const Tablestatus = (props) => {
@@ -8,13 +8,13 @@ const Tablestatus = (props) => {
         
         useEffect(() => {         
             const callOrders = () => { 
-                onSnapshot(collection(db, "orders"), (querySnapshot) => {
+                const orderRef = collection(db, "orders");
+                onSnapshot(query(orderRef, orderBy("table")), (querySnapshot) => {
                     let clients = []
                         querySnapshot.forEach((doc) => {
                         clients.push({...doc.data(), id: doc.id});
                     });
-                   console.log(clients); 
-                   setTable(clients);    
+                setTable(clients);    
                 });           
             }
             callOrders()
@@ -26,7 +26,8 @@ const Tablestatus = (props) => {
                     {table && table.map(item => 
                         <div key={item.id} className='state'>
                             <h3>Mesa {item.table.table}</h3>                            
-                            <h4>{item.state}</h4>                 
+                            <h4>Estado: {item.state}</h4>
+                            <button>Entregado</button>                 
                         </div>
                     )}
                 </div>

@@ -7,7 +7,7 @@ import '../modal/modal.scss'
 
 
 
-const Takingorders = ({state, menuData, menuState, on_change, handleInputChange, prices}) => {
+const Takingorders = ({initialState, state, menuData, menuState, on_change, handleInputChange, prices}) => {
 
     let text=[], subtotal=[], cant, name, table, quants 
         let message = document.getElementById('message')
@@ -88,6 +88,7 @@ const Takingorders = ({state, menuData, menuState, on_change, handleInputChange,
         </section> 
         <Modal isOpen ={isOpenModal} closeModal={closeModal}>
                     <ModalContent
+                    initialState={initialState}
                     table={table}
                     name={name}
                     quants={cant}
