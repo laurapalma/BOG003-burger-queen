@@ -82,15 +82,20 @@ section {
                 justify-self:  center;
             }
         }
-    }    
-    button {
+    }   
+    .divBton { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+        .btnOrders {
         align-self: center;
-        margin-top: 50px;
-        margin-bottom: 50px;
         padding: 0px;
         width: 20vh;
-        height: 7vh;
+        height: 80px;
         border: 2px solid yellow;
         border-radius: 8px;
+        }
     }
 }

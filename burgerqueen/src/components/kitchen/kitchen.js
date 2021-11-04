@@ -49,7 +49,8 @@ const Kitchen = () => {
                                 <h4>{quant}</h4>
                                 <h3>{item.product.text[i]}</h3>
                             </div>
-                            )}    
+                            )}   
+                            <div className="btnKitchen"> 
                     {(() => {switch (item.state) {
                         case 'Enviado':
                             return <button className='btnReceived' onClick={()=> handleUpdateInit(item.id, 'En proceso', new Date().getMinutes())}>Preparar</button>
@@ -59,7 +60,8 @@ const Kitchen = () => {
                             return <p>¡Tardaste {Math.abs(item.tempEnd-item.tempInit)} Minutos en preparar la orden!</p>
                         default:
                             break;
-                    }})()}              
+                    }})()}    
+                        </div>          
                     </div>
                 )}
             </div>

@@ -84,7 +84,9 @@ const Takingorders = ({initialState, state, menuData, menuState, on_change, hand
                         <p>$ {prices}</p>
                     </div>
                 </div>
-                <button onClick = { () =>{ validationOrder(); } }>Enviar</button>
+                <div className="divBton">
+                <button className="btnOrders" onClick = { () =>{ validationOrder(); } }>Enviar</button>
+                </div>
         </section> 
         <Modal isOpen ={isOpenModal} closeModal={closeModal}>
                     <ModalContent

@@ -50,30 +50,32 @@
 
             
         }
-
-        button{
+        .btnKitchen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 50px;
+            button{
             box-sizing: border-box;
             font-size: 30px;
             align-self: center;
             justify-self: center;
             width: 20vh;
-            //height: 7vh;
+            height: 80px;
             margin-bottom: 30px;
             padding-right: 10px;
             padding-left: 10px;
             margin-top: 30px;
-            /* background-color: #E76262; */
             border: 3px yellow solid;
             border-radius: 10px;
-            color: #342D57
-            ;
-        }
-        .btnReceived {
+            color: #342D57;
+            }
+            .btnReceived {
             background-color: #E76262;
-        }
-        .btnReady {
+            }
+            .btnReady {
             background-color: #79CB6B;
+            }
         }
-
     }    
 }
