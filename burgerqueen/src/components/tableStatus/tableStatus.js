@@ -10,14 +10,16 @@ const Tablestatus = (props) => {
         useEffect(() => {         
             const callOrders = () => { 
                 const orderRef = collection(db, "orders");
-                onSnapshot(query(orderRef, orderBy("table")), (querySnapshot) => {
+                onSnapshot(query(orderRef, orderBy("table")),{includeMetadataChanges:true},(querySnapshot) => {
                     let clients = [];
                     let orders
                         querySnapshot.forEach((doc) => {
                         clients.push({...doc.data(), id: doc.id});
                     });
                     orders = clients.filter((e)=> e.state !== "Entregado")
-                    setTable(orders);    
+                    setTable(orders);  
+                    const source = querySnapshot.metadata.fromCache ? "local cache" : "server";
+                    console.log("Data came from " + source);  
                 });           
             }
             callOrders()

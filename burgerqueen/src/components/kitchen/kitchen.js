@@ -24,7 +24,7 @@ const Kitchen = () => {
     useEffect(() => {         
         const callOrders = () => {
             const orderRef = collection(db, "orders"); 
-            onSnapshot(query(orderRef, orderBy("date", "desc")), (querySnapshot) => {
+            onSnapshot(query(orderRef, orderBy("date", "desc")),{includeMetadataChanges:true},(querySnapshot) => {
                 let clients = []
                 let orders
                     querySnapshot.forEach((doc) => {
@@ -32,6 +32,8 @@ const Kitchen = () => {
                 });
                 orders = clients.filter((e) =>  e.state !== "Entregado");
                 setValue(orders); 
+                const source = querySnapshot.metadata.fromCache ? "local cache" : "server";
+                console.log("Kitchen Data came from " + source);
             });           
         }
         callOrders()
@@ -54,7 +56,7 @@ const Kitchen = () => {
                         case 'En proceso':
                             return <button className='btnReady' onClick={()=> handleUpdateEnd(item.id, 'Listo', new Date().getMinutes())}>Listo</button>
                         case 'Listo':
-                            return <p>¡Tardaste {item.tempEnd-item.tempInit} Minutos en preparar la orden!</p>
+                            return <p>¡Tardaste {Math.abs(item.tempEnd-item.tempInit)} Minutos en preparar la orden!</p>
                         default:
                             break;
                     }})()}              
