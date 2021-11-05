@@ -1,6 +1,7 @@
 import { enableIndexedDbPersistence } from "firebase/firestore";
 import { db } from './firebaseConfig';
 
+//firebase Offline
 enableIndexedDbPersistence(db)
   .catch((err) => {
       if (err.code === 'failed-precondition') {
