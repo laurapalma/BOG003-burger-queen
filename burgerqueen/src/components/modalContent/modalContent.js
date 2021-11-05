@@ -1,7 +1,14 @@
 import { createOrder } from '../firebase/functionsFirebase.js'
 
-export const ModalContent = ({initialState, name, table, subtotal, quants, text, prices, closeModal}) => {
+export const ModalContent = ({initialState, name, table, subtotal, quants, text, prices, closeModal,handleCleaner}) => {
     const date = new Date().getTime();
+
+    const handleModal = () => {
+        createOrder({table}, {name}, {quants}, {text}, {subtotal}, {prices}, 'Enviado', date, '', '' ); 
+        closeModal();
+        handleCleaner()
+    }       
+    
     if (quants) {
         return(
             <>
@@ -19,9 +26,7 @@ export const ModalContent = ({initialState, name, table, subtotal, quants, text,
                 <h2 className='total'>Total a pagar</h2>
                 <p className='totalNumber'> ${prices} </p>
             </div>
-            <button onClick={ () => {createOrder({table}, {name}, {quants}, {text}, {subtotal}, {prices}, 'Enviado', date, '', '' ); closeModal(); setTimeout(()=> window.location.reload(), 2000)} }>Confirmar Pedido</button>
-            
-        
+            <button onClick={handleModal}>Confirmar Pedido</button>           
             </>
         )
     }  else {

@@ -58,11 +58,14 @@ function App() {
             return {...state, menuState: newMenuState, totalPrices: thePrices}
         case "changeInputs":
             return {...state, [action.fields]: action.inputs}
+        case "cleanInputs":
+            return {...state, menuState: initialMenuState, totalPrices: initialState.totalPrices, name: initialState.name, table: initialState.table}
+            
         default:
         throw new Error();
         } 
     }
-    const initialState = {
+    const initialStateClean = {
         
         menuData: breakData,
         menuState: initialMenuState,
@@ -71,6 +74,9 @@ function App() {
         table:'',
         
     }
+
+    const initialState = JSON.parse(JSON.stringify(initialStateClean));
+    console.log(JSON.parse(JSON.stringify(initialStateClean)), 'json');
     const [state, dispatch] = useReducer(reducer, initialState);
 
     return(
@@ -93,8 +99,10 @@ function App() {
                                 on_change={e => dispatch({ type: "changeValue", value: e.target.value, item: e.target.name})}
                                 prices = {state.totalPrices}
                                 handleInputChange={e => dispatch({type: "changeInputs", fields: e.target.name, inputs: e.target.value})}
+                                handleCleaner={e => dispatch ({type: 'cleanInputs'})}
                             />
-                            <TableStatus  />
+                            <TableStatus  />                           
+
                         </div>
                     </Route>
                     <Route path='/cocina'>
@@ -114,6 +122,7 @@ function App() {
                                     on_change={e => dispatch({ type: "changeValue", value: e.target.value, item: e.target.name})}
                                     prices = {state.totalPrices}
                                     handleInputChange={e => dispatch({type: "changeInputs", fields: e.target.name, inputs: e.target.value})}
+                                    handleCleaner={e => dispatch ({type: 'cleanInputs'})}
                             />
                             <TableStatus />
                         </div>
