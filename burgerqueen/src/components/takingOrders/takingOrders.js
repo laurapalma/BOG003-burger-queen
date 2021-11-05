@@ -7,7 +7,7 @@ import '../modal/modal.scss'
 
 
 
-const Takingorders = ({initialState, state, menuData, menuState, on_change, handleInputChange, prices, handleCleaner}) => {
+const Takingorders = ({initialState, state, menuData, menuState, on_change, handleInputChange, prices, comment, handleCleaner}) => {
 
     let text=[], subtotal=[], cant, name, table, quants 
         let message = document.getElementById('message')
@@ -31,7 +31,7 @@ const Takingorders = ({initialState, state, menuData, menuState, on_change, hand
     const validationOrder =() => {
         if (message === null) {
             alert('No has hecho un pedido')
-            window.location.reload()         
+            handleCleaner();        
         }else if (table === '' || name === ''){
             message.innerHTML= `Por favor rellene todos los campos`        
         } else {
@@ -90,14 +90,16 @@ const Takingorders = ({initialState, state, menuData, menuState, on_change, hand
         </section> 
         <Modal isOpen ={isOpenModal} closeModal={closeModal}>
                     <ModalContent
-                    initialState={initialState}
+                    state={state}
                     table={table}
                     name={name}
                     quants={cant}
                     text={text}
                     subtotal={subtotal}
-                    prices={prices}  
-                    closeModal={closeModal}  
+                    prices={prices}
+                    comment={comment}
+                    closeModal={closeModal}
+                    handleInputChange={handleInputChange}
                     handleCleaner={handleCleaner}
                     />
         </Modal>

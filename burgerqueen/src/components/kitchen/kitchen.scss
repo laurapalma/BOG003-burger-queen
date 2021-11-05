@@ -50,6 +50,14 @@
 
             
         }
+        .kitchenComment {
+            width: 80%;
+            height: 80px;
+            align-self: center;
+            text-align: center;
+            color:var(--ligth-blue);
+            font-size: 20px;
+        }
         .btnKitchen {
         display: flex;
         justify-content: center;

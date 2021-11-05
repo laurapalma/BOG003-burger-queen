@@ -51,9 +51,9 @@ function App() {
             let thePrices = mult(newMenuState, prices);
             return {...state, menuState: newMenuState, totalPrices: thePrices}
         case "changeInputs":
-            return {...state, [action.fields]: action.inputs}
+            return {...state, [action.fields]: action.inputs}    
         case "cleanInputs":
-            return {...state, menuState: initialMenuState, totalPrices: initialState.totalPrices, name: initialState.name, table: initialState.table}
+            return initialStateClean
             
         default:
         throw new Error();
@@ -66,6 +66,7 @@ function App() {
         totalPrices: 0,
         name: '',
         table:'',
+        comment: '',
         
     }
 
@@ -91,6 +92,7 @@ function App() {
                                 menuState={state.menuState}
                                 on_change={e => dispatch({ type: "changeValue", value: e.target.value, item: e.target.name})}
                                 prices = {state.totalPrices}
+                                comment= {state.comment}
                                 handleInputChange={e => dispatch({type: "changeInputs", fields: e.target.name, inputs: e.target.value})}
                                 handleCleaner={e => dispatch ({type: 'cleanInputs'})}
                             />
@@ -114,6 +116,7 @@ function App() {
                                     menuState={state.menuState}
                                     on_change={e => dispatch({ type: "changeValue", value: e.target.value, item: e.target.name})}
                                     prices = {state.totalPrices}
+                                    comment = {state.comment}
                                     handleInputChange={e => dispatch({type: "changeInputs", fields: e.target.name, inputs: e.target.value})}
                                     handleCleaner={e => dispatch ({type: 'cleanInputs'})}
                             />

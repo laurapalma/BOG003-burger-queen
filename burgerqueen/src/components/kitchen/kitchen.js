@@ -49,7 +49,10 @@ const Kitchen = () => {
                                 <h4>{quant}</h4>
                                 <h3>{item.product.text[i]}</h3>
                             </div>
-                            )}   
+                            )}
+                            <div className='kitchenComment'>
+                                *{item.comment.comment}
+                            </div> 
                             <div className="btnKitchen"> 
                     {(() => {switch (item.state) {
                         case 'Enviado':
