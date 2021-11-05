@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import letras from './img/letras.png'
-import burguer from './img/burguer.png'
+import letras from './img/letras.webp'
+import burguer from './img/burguer.webp'
 import dish from './img/dish 1.png'
 import chef from './img/chef.png'
 import './header.scss'

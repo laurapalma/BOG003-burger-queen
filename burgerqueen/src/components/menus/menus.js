@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import Hamburguesa from './img/Hamburguesa.png'
-import Sandwich from './img/Sandwich.png'
+import Hamburguesa from './img/Hamburguesa.webp'
+import Sandwich from './img/Sandwich.webp'
 import './menus.scss'
 
 const Menus = ({dispatch, actionA, actionB}) => {

@@ -38,12 +38,6 @@ const mult = (obj1, obj2) => {
     return sum
 }
 
-
-// initialMenu = [5, 2, 0, 1];
-// prices = [10, 5, 20, 10];
-// total = initialMenu * prices = [50, 10, 0, 10];
-// total.sum => 50 + 10 + 0 + 10 = 70 
-
 function App() {
     const reducer = (state, action) => {
         switch (action.type) {
@@ -76,7 +70,6 @@ function App() {
     }
 
     const initialState = JSON.parse(JSON.stringify(initialStateClean));
-    console.log(JSON.parse(JSON.stringify(initialStateClean)), 'json');
     const [state, dispatch] = useReducer(reducer, initialState);
 
     return(
