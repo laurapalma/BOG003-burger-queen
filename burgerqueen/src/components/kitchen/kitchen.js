@@ -25,7 +25,8 @@ const Kitchen = () => {
     useEffect(() => {         
         const callOrders = () => {
             const orderRef = collection(db, "orders"); 
-            // se ordena los documentos por fecha en orden descendente
+            /* se ordena los documentos por fecha en orden descendente y se activa el escucha de algún 
+            cambio, cuando no hay conexión a internet*/
             onSnapshot(query(orderRef, orderBy("date", "desc")),{includeMetadataChanges:true},(querySnapshot) => {
                 let clients = []
                 let orders
