@@ -28,7 +28,8 @@ const Takingorders = ({state, menuData, menuState, on_change, handleInputChange,
         // Se declara la modal en False, para que no se muestre.
         const [isOpenModal, openModal, closeModal] = useModal(false); 
         
-        // se crea condicionales para que se valide si se llenaron todos los campos de orden y se abra la modal.
+        /* se crea condicionales para que se valide si se llenaron todos los campos de orden y se 
+         la modal.*/
         const validationOrder =() => {
             if (message === null) {
             alert('No has hecho un pedido')
@@ -72,14 +73,15 @@ const Takingorders = ({state, menuData, menuState, on_change, handleInputChange,
                     <input 
                             type="number" 
                             id={item["key"] + "_id"} 
-                            name={item["key"]} 
+                            name={item["key"]} // Se le asigna el valor de la key de la data
                             value={menuState[item["key"]]} 
                             step="1" 
                             min="0"
                             onChange = {on_change}
                     />
                     <h6>{item.producto}</h6>
-                        {/* Se multiplica el valor de la key actual de ese producto por el precio almacenado en la data*/}
+                        {/* Se multiplica el valor de la key, que es la cantidad actual de ese producto 
+                        por el precio almacenado en la data*/}
                     <p> $ {parseInt(menuState[item["key"]])*parseInt(item["precio"])}</p>
                 </div>
                 )}
