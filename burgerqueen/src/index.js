@@ -12,6 +12,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+// Activamos el service worker para que la app funcione sin conexión
 serviceWorkerRegistration.register();
 
 reportWebVitals();
+

@@ -12,6 +12,7 @@ const Modal = ({children, isOpen, closeModal}) => {
                 </div>
                 <h1>Resumen del Pedido</h1>
                 <div className='childrenContainer'>
+                    {/* Prop especial que permite enviarle props a ModalContent directamente desde TakingOrders*/}
                     {children}
                 </div>
             </div>
