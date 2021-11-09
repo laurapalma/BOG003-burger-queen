@@ -61,18 +61,19 @@ const Takingorders = ({state, menuData, menuState, on_change, handleInputChange,
                         id='nameUser'
                         name='name'
                         type="text"
-                        placeholder=" Nombre del Cliente"
+                        placeholder="Nombre del Cliente"
                         value = {state.name}
                         onChange = {e => handleInputChange(e)}
                     />
                 </div>
-                <p id='message' className='message'></p>
+                <p id='message' data-testid='message' className='message'></p>
                 {/* Se recorre la data por cada key y se traen los valores de cada producto del menú*/}
                 {menuData.map((item, i) => 
                 <div key={i} className='orderContainer'>
                     <input 
                             type="number" 
-                            id={item["key"] + "_id"} 
+                            id={item["key"] + "_id"}
+                            data-testid={item["key"] + "_id"}
                             name={item["key"]} // Se le asigna el valor de la key de la data
                             value={menuState[item["key"]]} 
                             step="1" 

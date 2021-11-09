@@ -20,8 +20,6 @@ const Kitchen = () => {
         });
     }
     const [value, setValue] = useState();
-
-
     useEffect(() => {         
         const callOrders = () => {
             const orderRef = collection(db, "orders"); 

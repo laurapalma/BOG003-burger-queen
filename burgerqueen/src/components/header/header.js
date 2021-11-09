@@ -6,7 +6,7 @@ import chef from './img/chef.png'
 import './header.scss'
 import { Link } from 'react-router-dom'
 
-const Header = (props) => {
+const Header = () => {
     // Se iniacializa el useState
     const [style, setStyle] = useState(true);
     // Se declaran dos estilos según el caso
