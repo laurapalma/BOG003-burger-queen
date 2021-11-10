@@ -7,21 +7,21 @@ import '../modal/modal.scss'
 
 
 
-const Takingorders = ({state, menuData, menuState, on_change, handleInputChange, prices, comment, handleCleaner}) => {
+const Takingorders = ({state, on_change, handleInputChange, handleCleaner}) => {
 
     let text=[], subtotal=[], cant, name, table, quants 
         let message = document.getElementById('message')
         name = state.name;
         table = state.table;
-        const keys = Object.entries(menuState); // Para obtener arreglo con las propiedades
+        const keys = Object.entries(state.menuState); // Para obtener arreglo con las propiedades
         quants = keys.filter((key)=> key[1] !== '0'); // Para obtener los productos (key) que pidió el cliente
         cant  = quants.map((e)=> e[1]); 
         const letras = quants.map((e)=> e[0]);  // Para obtener solo las keys 
         for (let i=0; i < letras.length; i++){ // ciclo que recorre las keys de los productos seleccionados
-            for (let j=0; j< menuData.length; j++){  // Ciclo anidado que recorre cada elemento del menú 
-                if (menuData[j].key === letras[i]){  // Validar si la key actual es igual a alguna de las que tiene el menú
-                    text.push(menuData[j].producto); // Si se cumple la condición anterior, extraemos el nombre de ese producto
-                    subtotal.push(parseInt(quants[i][1])*parseInt(menuData[j].precio)); // obtenemos el precio total del producto actual 
+            for (let j=0; j< state.menuData.length; j++){  // Ciclo anidado que recorre cada elemento del menú 
+                if (state.menuData[j].key === letras[i]){  // Validar si la key actual es igual a alguna de las que tiene el menú
+                    text.push(state.menuData[j].producto); // Si se cumple la condición anterior, extraemos el nombre de ese producto
+                    subtotal.push(parseInt(quants[i][1])*parseInt(state.menuData[j].precio)); // obtenemos el precio total del producto actual 
                 }
             }
         }
@@ -68,14 +68,14 @@ const Takingorders = ({state, menuData, menuState, on_change, handleInputChange,
                 </div>
                 <p id='message' data-testid='message' className='message'></p>
                 {/* Se recorre la data por cada key y se traen los valores de cada producto del menú*/}
-                {menuData.map((item, i) => 
+                {state.menuData.map((item, i) => 
                 <div key={i} className='orderContainer'>
                     <input 
                             type="number" 
                             id={item["key"] + "_id"}
                             data-testid={item["key"] + "_id"}
                             name={item["key"]} // Se le asigna el valor de la key de la data
-                            value={menuState[item["key"]]} 
+                            value={state.menuState[item["key"]]} 
                             step="1" 
                             min="0"
                             onChange = {on_change}
@@ -83,13 +83,13 @@ const Takingorders = ({state, menuData, menuState, on_change, handleInputChange,
                     <h6>{item.producto}</h6>
                         {/* Se multiplica el valor de la key, que es la cantidad actual de ese producto 
                         por el precio almacenado en la data*/}
-                    <p> $ {parseInt(menuState[item["key"]])*parseInt(item["precio"])}</p>
+                    <p> $ {parseInt(state.menuState[item["key"]])*parseInt(item["precio"])}</p>
                 </div>
                 )}
                 <div className="totalContainer">
                         <p>Total: </p>
                     <div>
-                        <p>$ {prices}</p>
+                        <p>$ {state.totalPrices}</p>
                     </div>
                 </div>
                 <div className="divBton">
@@ -107,8 +107,8 @@ const Takingorders = ({state, menuData, menuState, on_change, handleInputChange,
                     quants={cant}
                     text={text}
                     subtotal={subtotal}
-                    prices={prices}
-                    comment={comment}
+                    prices={state.totalPrices}
+                    comment={state.comment}
                     closeModal={closeModal}
                     handleInputChange={handleInputChange}
                     handleCleaner={handleCleaner}
